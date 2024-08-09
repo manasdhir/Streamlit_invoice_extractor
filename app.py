@@ -3,7 +3,6 @@ import google.generativeai as genai
 import os
 import tempfile
 
-# Configure API key
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 st.title("Invoice Information Extractor")
@@ -21,7 +20,6 @@ if uploaded_file is not None:
         model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
         result = model.generate_content(["Extract the Customer Details, product details and the Total amount", response])
         
-        # Format the extracted information
         customer_details = """
         **Name:** TEST  
         **Billing and Shipping Address:** Hyderabad, TELANGANA, 500089  
@@ -41,7 +39,6 @@ if uploaded_file is not None:
         **Total Amount (including 18% IGST):** ₹7,68,771.00
         """
         
-        # Display the formatted information
         st.markdown("### Customer Details")
         st.markdown(customer_details)
         
